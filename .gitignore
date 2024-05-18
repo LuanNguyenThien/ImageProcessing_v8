@@ -1,0 +1,28 @@
+# Bỏ qua các tệp tạm thời của hệ điều hành
+*.log
+*.tmp
+.DS_Store
+
+# Bỏ qua các tệp của môi trường ảo Python
+venv/
+mp_env/
+__pycache__/
+
+# Bỏ qua các tệp biên dịch Python
+*.pyc
+
+# Bỏ qua các tệp cấu hình của IDE
+.vscode/
+.idea/
+
+# Bỏ qua các thư mục __pycache__ ở mọi cấp độ
+**/__pycache__/
+
+21133004_NguyenThiPhuongAnh.mp4
+
+# Ignore ONNX files
+Module/NhanDangTraiCay_Onnx_Streamlit/*.onnx
+
+# Ignore YOLO weights files
+Module/Phat_Hien_Doi_Tuong_Yolo4_streamlit/*.weights
+
