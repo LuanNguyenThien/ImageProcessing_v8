@@ -329,15 +329,23 @@ def mainface():
         )
     st.divider()
     
-    nameUser = st.text_input(
-        'Nhập tên người thu thập dữ liệu', placeholder='VD: Bạn A')
-    if (st.button('Nhận dữ liệu')):
-        getData(nameUser)
+    # Khởi tạo trạng thái nếu chưa tồn tại
+    if 'data_received' not in st.session_state:
+        st.session_state.data_received = False
 
-    if st.button("Tiến hành training face recognize"):
-        Training()
+    nameUser = st.text_input('Nhập tên người thu thập dữ liệu', placeholder='VD: Bạn A')
 
-    if (st.button('Nhận diện bằng camera')):
+    if nameUser:
+        if st.button('Nhận dữ liệu'):
+            getData(nameUser)
+            st.session_state.data_received = True
+
+    # Chỉ hiển thị nút training nếu dữ liệu đã được nhận
+    if st.session_state.data_received:
+        if st.button("Tiến hành training face recognize"):
+            Training()
+
+    if st.button('Nhận diện bằng camera'):
         predict('cam', None)
 
     if os.path.exists(result_path):

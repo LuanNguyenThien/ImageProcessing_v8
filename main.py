@@ -10,7 +10,7 @@ import numpy as np
 from Module.giai_pt_bac_2 import ptb2
 from Module.face_recognize import mainFace
 from Module.Phat_Hien_Doi_Tuong_Yolo4_streamlit.phat_hien_doi_tuong_yolo4 import nhan_dang_doi_tuong
-# from Module.nhan_dang_chu_so_mnist_streamlit.home import runDetect
+from Module.nhan_dang_chu_so_mnist_streamlit.home import runDetect
 from Module.NhanDangTraiCay_Onnx_Streamlit import nhan_dang_trai_cay
 from Module.faceAgeGender_dectected import mainAgeGender
 from Module.HandWriting.handwriting_streamlit import handwriting_streamlit_show 
@@ -38,7 +38,7 @@ def convert_video(input_path, output_path):
 st.set_page_config(
     page_title="Đồ án cuối kỳ Xử lý ảnh số",
     layout="wide",
-    page_icon="🌻",
+    page_icon="📸",
     initial_sidebar_state="expanded",
 )
 
@@ -71,43 +71,41 @@ def display_home():
         
     st.image('./img/HCMUTE-fit.png')
     st.divider()
-    st.title("Chào mừng đến với Đồ án cuối kỳ bộ môn Xử lý ảnh số!")
-    
+    st.title("Đồ án cuối kỳ môn Xử lý ảnh số")
+    st.write("**Mã lớp: DIPR430685_23_1_02**")
+    st.write("**GVHD: ThS. Trần Tiến Đức**")
     st.divider()
     st.subheader("Sinh viên thực hiện")
     col1, col2 = st.columns(2)
-    with col2:
-        st.text("")
-        st.markdown(
-            """
-            ## Nguyễn Thị Phương Anh
-            ##### MSSV: 21133004
-            ##### Mã lớp: DIPR430685_23_1_02
-            ##### GVHD: ThS. Trần Tiến Đức
-            """
-        )
+
     with col1:
         st.image("./img/phuonganh.png")
+        st.write("**Nguyễn Thiện Luân**")
+        st.write("**MSSV: 21110538**")
+
+    with col2:
+        st.image("./img/phuonganh.png")
+        st.write("**Lê Nguyễn Bảo**")
+        st.write("**MSSV: 21110374**")
     
+        
     st.divider()    
     st.subheader("Nội dung project")
     col1, col2=st.columns(2)
     with col1:
-        st.subheader("6 chức năng chính")
-        st.write("💠Giải phương trình bậc 2")
-        st.write("💠Nhận dạng khuôn mặt")
-        st.write("💠Nhận dạng đối tượng")
-        st.write("💠Nhận dạng chữ số viết tay")
-        st.write("💠Nhận dạng 5 loại trái cây")
-        st.write("💠Xử lý ảnh")
-    
+        st.subheader("4 chức năng chính")
+        st.write("😃 Nhận dạng khuôn mặt")
+        st.write("🔢 Nhận dạng chữ số viết tay")
+        st.write("🍎 Nhận dạng 5 loại trái cây")
+        st.write("🖼️ Xử lý ảnh")
+
     with col2:
         st.subheader("Chức năng thêm")
-        st.write("💠Nhận dạng tuổi - giới tính")
-        st.write("💠Nhận dạng chữ viết tay")
-        st.write("💠Nhận dạng lá bài tây")
-        st.write("💠Nhận diện nón bảo hiểm")  
-        st.write("💠Phát hiện gian lận")   
+        st.write("👶 Nhận dạng tuổi - giới tính")
+        st.write("✍️ Nhận dạng chữ viết tay")
+        st.write("🃏 Nhận dạng lá bài tây")
+        st.write("⛑️ Nhận diện nón bảo hiểm")  
+        st.write("🚨 Phát hiện gian lận")
         
 #Giải phương trình bậc 2
 def display_quadratic_equation_solver():
@@ -131,10 +129,10 @@ def display_object_detection():
     
 #Nhận dạng chữ số viết tay
 def display_handwritten_digit_recognition():        
-    st.title("✍️NHẬN DẠNG CHỮ SỐ VIẾT TAY")
+    st.title("🔢NHẬN DẠNG CHỮ SỐ VIẾT TAY")
     st.divider()
     
-    # runDetect()
+    runDetect()
     
 #Nhận dạng 5 loại trái cây
 def display_fruit_classification():    
@@ -154,13 +152,13 @@ def display_image_processing():
 
 #Nhận dạng tuổi, giới tính
 def display_face_Age_Gender():    
-    st.title("👴👧NHẬN DẠNG TUỔI - GIỚI TÍNH")
+    st.title("👶NHẬN DẠNG TUỔI - GIỚI TÍNH")
     st.divider()
     mainAgeGender.runAgeGender()
      
 #Nhận dạng chữ viết tay
 def hand_writting():
-    st.title("📝NHẬN DẠNG CHỮ VIẾT TAY📝")
+    st.title("✍️NHẬN DẠNG CHỮ VIẾT TAY✍️")
     st.divider()
     handwriting_streamlit_show()
         
@@ -252,14 +250,14 @@ def cards():
 
 #Nhận diện nón bảo hiểm
 def object_helmet():
-    st.title("🪖NHẬN DẠNG NÓN BẢO HIỂM🪖")
+    st.title("⛑️NHẬN DẠNG NÓN BẢO HIỂM⛑️")
     st.divider()
     
     runDetectHelmet()
   
 #Phát hiện gian lận      
 def exam_cheating():
-    st.title("📝Nhận dạng gian lận📝")  
+    st.title("🚨Nhận dạng gian lận🚨")  
     st.divider()
     
     ExamCheatingDetect()
@@ -269,28 +267,28 @@ def main():
     #chèn background
     page_bg_img = """   
     <style>
-    .stApp {
-    background: url("https://images.unsplash.com/photo-1536481351195-04a50ee18278?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
-        no-repeat center center fixed !important;
-    background-size: cover !important;
-    }
-    .stApp::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    }
-    [data-testid="stHeader"]{
-        background: rgba(0,0,0,0);
-    }
-    [data-testid="stToolbar"]{
-        right:2rem;
-    }
+    # .stApp {
+    # background: url("https://cellphones.com.vn/sforum/wp-content/uploads/2023/02/hinh-nen-may-tinh-4k-76.jpg")
+    #     no-repeat center center fixed !important;
+    # background-size: cover !important;
+    # }
+    # .stApp::before {
+    # content: "";
+    # position: absolute;
+    # top: 0;
+    # left: 0;
+    # width: 100%;
+    # height: 100%;
+    # background-color: rgba(255, 255, 255, 0.5);
+    # }
+    # [data-testid="stHeader"]{
+    #     background: rgba(0,0,0,0);
+    # }
+    # [data-testid="stToolbar"]{
+    #     right:2rem;
+    # }
     [data-testid="stSidebar"] > div:first-child {
-        background-image: url("https://images.unsplash.com/photo-1536481351195-04a50ee18278?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJsdWV8ZW58MHx8MHx8fDA%3D");
+        background-image: url("https://images.pexels.com/photos/2437299/pexels-photo-2437299.jpeg?auto=compress&cs=tinysrgb&w=800");
         background-position: center;      
     }
     </style>
@@ -302,10 +300,10 @@ def main():
             "Nhận dạng chữ số viết tay", "Nhận dạng 5 loại trái cây", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
             "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Nhận dạng nón bảo hiểm", "Phát hiện gian lận"]
     # Biểu tượng tương ứng với mỗi mục trong menu
-    menu_icons = ["🏠", "✏️", "😃", "🚌", "✍️", "🍎", "🖼️", "👴👧", "📝", "🃏", "🪖", "📝"]
+    menu_icons = ["🏠", "✏️", "😃", "🚌", "🔢", "🍎", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨"]
 
     # Chọn chức năng từ thanh menu
-    st.sidebar.markdown("<h2 style='font-size:24px; color: white;'>🌟Chọn chức năng🌟</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>🌟Chọn chức năng🌟</h2>", unsafe_allow_html=True)
     choice = st.sidebar.selectbox("", menu, format_func=lambda x: menu_icons[menu.index(x)] + " " + x)
 
     if choice == "Trang chủ":
@@ -335,26 +333,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#streamlit run main.py
-# %%streamlit
-import keras
-print(keras.__version__)
-# %%new
-import tensorflow as tf
-print(tf.__version__)
-
-# %%newcell
-import h5py
-
-def get_keras_version(model_path):
-    with h5py.File(model_path, 'r') as f:
-        if 'keras_version' in f.attrs:
-            keras_version = f.attrs['keras_version']
-            if isinstance(keras_version, bytes):
-                return keras_version.decode('utf8')
-            return keras_version
-
-model_path = r'Module\nhan_dang_chu_so_mnist_streamlit\digit_weight.h5'
-print(get_keras_version(model_path))
-# %%

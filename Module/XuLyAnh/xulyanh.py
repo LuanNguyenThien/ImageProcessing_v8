@@ -37,7 +37,7 @@ def runXuLyAnh():
     with col2:
         if chuong == 'Chương 3: Biến đổi độ sáng và lọc trong không gian':
             xulyanh = st.selectbox("Chọn phương pháp xử lí ảnh",
-                                   ('Negative', 'Logarit ảnh', 'Power', 'PiecewiseLinear', 'Histogram', 'Cân bằng Histogram', 'Cân bằng Histogram của ảnh màu', 'Local Histogram', 'Histogram Statistics', 'Smoothing', 'SmoothingGauss', 'Threshold', 'MedianFilter', 'Sharpen', 'Gradient'))
+                                   ('Negative', 'Logarit', 'Power', 'PiecewiseLinear', 'Histogram', 'Cân bằng Histogram', 'Cân bằng Histogram của ảnh màu', 'Local Histogram', 'Histogram Statistics', 'Smoothing', 'SmoothingGauss', 'Threshold', 'MedianFilter', 'Sharpen', 'Gradient'))
 
         if chuong == 'Chương 4: Lọc trong miền tần số':
             xulyanh = st.selectbox("Chọn phương pháp xử lí ảnh", (
@@ -65,21 +65,30 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Negative(frame_gray),
-                               use_column_width=True, caption='Output')
+                    
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Negative(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Negative(frame), use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
-        if xulyanh == 'Logarit ảnh':
+        if xulyanh == 'Logarit':
             # st.subheader("Phương pháp negative")
             # st.write('Dùng để tạo một biến thể của ảnh: đảo ngược màu sắc của các điểm ảnh so với ảnh gốc')
             st.markdown("""
@@ -93,17 +102,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Logarit(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Logarit(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Logarit(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -121,17 +139,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Power(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Power(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Power(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -149,17 +176,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.PiecewiseLinear(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.PiecewiseLinear(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.PiecewiseLinear(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -177,17 +213,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    # frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Histogram(frame),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Histogram(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Histogram(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -205,17 +250,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.HistEqual(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.HistEqual(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.HistEqual(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -233,16 +287,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_color = cv2.cvtColor(frame, cv2.IMREAD_COLOR)
-                    col2.image(c3.HistEqualColor(frame_color),
+                    output_col.image(c3.HistEqualColor(frame_color),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -261,17 +320,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.LocalHist(frame_gray),
-                               use_column_width=True, caption='Output')
+                    
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.LocalHist(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.LocalHist(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -289,17 +357,25 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.HistStat(frame_gray),
-                               use_column_width=True, caption='Output')
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.HistStat(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.HistStat(frame), use_column_width=True, caption='Output')                 
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -317,17 +393,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(cv2.blur(frame_gray, (21, 21)),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(cv2.blur(frame_gray, (21, 21)), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(cv2.blur(frame, (21, 21)), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -345,17 +430,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(cv2.GaussianBlur(frame_gray, (43, 43), 7.0),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(cv2.GaussianBlur(frame_gray, (43, 43), 7.0), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(cv2.GaussianBlur(frame, (43, 43), 7.0), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -373,17 +467,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.MedianFilter(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.MedianFilter(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.MedianFilter(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -399,16 +502,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png", "tif"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.IMREAD_GRAYSCALE)
-                    col2.image(c3.Threshold(frame_gray),
+                    output_col.image(c3.Threshold(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -425,17 +533,26 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Sharpen(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Sharpen(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Sharpen(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -451,17 +568,25 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c3.Gradient(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c3.Gradient(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c3.Gradient(frame), use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -479,16 +604,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c4.Spectrum(frame_gray),
+                    output_col.image(c4.Spectrum(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -505,16 +635,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c4.FrequencyFilter(frame_gray),
+                    output_col.image(c4.FrequencyFilter(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -547,16 +682,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c4.RemoveMoire(frame_gray),
+                    output_col.image(c4.RemoveMoire(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -575,16 +715,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c5.CreateMotionNoise(frame_gray),
+                    output_col.image(c5.CreateMotionNoise(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -601,16 +746,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c5.DenoiseMotion(frame_gray),
+                    output_col.image(c5.DenoiseMotion(frame_gray),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -627,17 +777,22 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
                     temp = cv2.medianBlur(frame_gray, 7)
-                    col2.image(c5.DenoiseMotion(temp),
+                    output_col.image(c5.DenoiseMotion(temp),
                                use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -656,16 +811,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c9.ConnectedComponent(
+                    output_col.image(c9.ConnectedComponent(
                         frame_gray), use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
@@ -681,16 +841,21 @@ def runXuLyAnh():
                     "Upload a image",
                     type=["jpg", "jpeg", "png"],
                     help="Scanned file are not supported yet!")
+            
+            with col2:
+                st.write("")
                 execute = st.button('Hiển thị xử lí ảnh', type='primary')
                 remove = st.button('Xoá bộ nhớ')
+
             if uploaded_file is not None:
-                col2.image(uploaded_file, use_column_width=True,
+                input_col, output_col = st.columns(2)
+                input_col.image(uploaded_file, use_column_width=True,
                            caption='Input')
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
                     frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    col2.image(c9.CountRice(
+                    output_col.image(c9.CountRice(
                         frame_gray), use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
