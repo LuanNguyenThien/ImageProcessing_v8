@@ -96,7 +96,7 @@ def display_home():
         st.subheader("4 chức năng chính")
         st.write("😃 Nhận dạng khuôn mặt")
         st.write("🔢 Nhận dạng chữ số viết tay")
-        st.write("🍎 Nhận dạng 5 loại trái cây")
+        st.write("✈️ Nhận dạng đối tượng")
         st.write("🖼️ Xử lý ảnh")
 
     with col2:
@@ -104,14 +104,8 @@ def display_home():
         st.write("👶 Nhận dạng tuổi - giới tính")
         st.write("✍️ Nhận dạng chữ viết tay")
         st.write("🃏 Nhận dạng lá bài tây")
-        st.write("⛑️ Nhận diện nón bảo hiểm")  
+        st.write("⛑️ Nhận dạng nón bảo hiểm")
         st.write("🚨 Phát hiện gian lận")
-        
-#Giải phương trình bậc 2
-def display_quadratic_equation_solver():
-    st.title("✏️GIẢI PHƯƠNG TRÌNH BẬC 2")
-    st.divider()
-    ptb2()    
     
 #Nhận dạng khuôn mặt
 def display_face_detection():    
@@ -119,13 +113,6 @@ def display_face_detection():
     st.divider()
     
     mainFace.mainface()
-
-#Nhận dạng đối tượng
-def display_object_detection():    
-    st.title("🚌NHẬN DẠNG ĐỐI TƯỢNG🚌")
-    st.divider()
-    
-    nhan_dang_doi_tuong()
     
 #Nhận dạng chữ số viết tay
 def display_handwritten_digit_recognition():        
@@ -134,37 +121,37 @@ def display_handwritten_digit_recognition():
     
     runDetect()
     
-#Nhận dạng 5 loại trái cây
-def display_fruit_classification():    
-    st.title("NHẬN DẠNG 5 LOẠI TRÁI CÂY")
-    st.subheader("Các loại trái cây đã traning model:")
-    st.write("Apple 🍎, Mango 🥭, Orange 🍊, Pear 🍐, Watermelon 🍉")   
+#Nhận dạng đối tượng
+def display_object_detection():    
+    st.title("NHẬN DẠNG 80 LOẠI ĐỐI TƯỢNG")
+    st.subheader("Các loại đối tượng đã training model:")
+    st.write("person 🚶, bicycle 🚲, car 🚗, motorbike 🏍️, aeroplane ✈️, bus 🚌, train 🚆, truck 🚚, boat ⛵, traffic light 🚦, stop sign 🛑, cat 🐱, dog 🐶, handbag 👜, tie 👔, suitcase 🧳, frisbee 🥏, skis 🎿, snowboard 🏂, sports ball ⚽, kite 🪁, baseball bat ⚾, baseball glove ⚾, skateboard 🛹, surfboard 🏄‍♂️, tennis racket 🎾, bottle 🍾, wine glass 🍷, cup ☕, fork 🍴, knife 🔪, spoon 🥄, bowl 🥣, banana 🍌, apple 🍎, sandwich 🥪, orange 🍊, broccoli 🥦, carrot 🥕, hot dog 🌭, pizza 🍕, donut 🍩, cake 🍰, chair 🪑, sofa 🛋️, bed 🛏️, diningtable 🪑, toilet 🚽, tvmonitor 📺, laptop 💻, mouse 🖱️, remote 📱, keyboard ⌨️, cell phone 📱, microwave 🍲, oven 🍲, toaster 🍞, sink 🚰, refrigerator 🧊, book 📚, clock 🕰️, vase 🏺, scissors ✂️, teddy bear 🧸, hair drier 💇 ...")   
     st.divider()
     
     nhan_dang_trai_cay.nhan_dang_trai_cay() 
 
 #Xử lý ảnh
 def display_image_processing():
-    st.title("🖼️XỬ LÝ ẢNH🖼️")
+    st.title("XỬ LÝ ẢNH")
     st.divider()
     
     runXuLyAnh()
 
 #Nhận dạng tuổi, giới tính
 def display_face_Age_Gender():    
-    st.title("👶NHẬN DẠNG TUỔI - GIỚI TÍNH")
+    st.title("NHẬN DẠNG TUỔI - GIỚI TÍNH")
     st.divider()
     mainAgeGender.runAgeGender()
      
 #Nhận dạng chữ viết tay
 def hand_writting():
-    st.title("✍️NHẬN DẠNG CHỮ VIẾT TAY✍️")
+    st.title("NHẬN DẠNG CHỮ VIẾT TAY")
     st.divider()
     handwriting_streamlit_show()
         
 #Nhận dạng lá bài tây
 def cards():   
-    st.title("🃏NHẬN DẠNG LÁ BÀI TÂY🃏")
+    st.title("NHẬN DẠNG LÁ BÀI TÂY")
     st.divider()
     
     col1, col2 = st.columns(2)
@@ -176,12 +163,14 @@ def cards():
                 """
         )
     with col2:
-        st.markdown(
-            """
-                #### Model được sử dụng
-                🔻Tự train trên data custom
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
                 """
-        )
+                    #### Model được sử dụng
+                    🔻Tự train trên data custom
+                    """
+            )
     st.divider()
     
     result_path = ".\\Module\\BlackJackRecognize\\result\\"
@@ -250,11 +239,11 @@ def cards():
 
 #Nhận diện nón bảo hiểm
 def object_helmet():
-    st.title("⛑️NHẬN DẠNG NÓN BẢO HIỂM⛑️")
+    st.title("NHẬN DẠNG NÓN BẢO HIỂM")
     st.divider()
     
     runDetectHelmet()
-  
+
 #Phát hiện gian lận      
 def exam_cheating():
     st.title("🚨Nhận dạng gian lận🚨")  
@@ -296,28 +285,24 @@ def main():
     st.markdown(page_bg_img, unsafe_allow_html=True)
     
     # Thanh menu
-    menu = ["Trang chủ", "Giải phương trình bậc 2", "Nhận dạng khuôn mặt", "Nhận dạng đối tượng",
-            "Nhận dạng chữ số viết tay", "Nhận dạng 5 loại trái cây", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
+    menu = ["Trang chủ", "Nhận dạng khuôn mặt", "Nhận dạng đối tượng",
+            "Nhận dạng chữ số viết tay", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
             "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Nhận dạng nón bảo hiểm", "Phát hiện gian lận"]
     # Biểu tượng tương ứng với mỗi mục trong menu
-    menu_icons = ["🏠", "✏️", "😃", "🚌", "🔢", "🍎", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨"]
+    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨"]
 
     # Chọn chức năng từ thanh menu
-    st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>🌟Chọn chức năng🌟</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>👉 Chọn chức năng 👈</h2>", unsafe_allow_html=True)
     choice = st.sidebar.selectbox("", menu, format_func=lambda x: menu_icons[menu.index(x)] + " " + x)
 
     if choice == "Trang chủ":
         display_home()
-    elif choice == "Giải phương trình bậc 2":
-        display_quadratic_equation_solver()
     elif choice == "Nhận dạng khuôn mặt":
         display_face_detection()
     elif choice == "Nhận dạng đối tượng":
         display_object_detection()
     elif choice == "Nhận dạng chữ số viết tay":
         display_handwritten_digit_recognition()
-    elif choice == "Nhận dạng 5 loại trái cây":
-        display_fruit_classification()
     elif choice == "Xử lý ảnh":
         display_image_processing()
     elif choice == "Nhận dạng tuổi - giới tính":

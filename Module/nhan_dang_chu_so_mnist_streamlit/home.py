@@ -34,6 +34,7 @@ if 'is_load' not in st.session_state:
     # load data
     (_,_), (X_test, y_test) = datasets.mnist.load_data()
     X_test = X_test.reshape((10000, 28, 28, 1))
+
     st.session_state.X_test = X_test
 
     st.session_state.is_load = True
@@ -52,14 +53,16 @@ def runDetect():
                 """
         )
     with col2:
-        st.markdown(
-            """
-                #### Model được sử dụng
-                🔻digit_config.json
-
-                🔻digit_weight.h5
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
                 """
-        )
+                    #### Model được sử dụng
+                    🔻digit_config.json
+
+                    🔻digit_weight.h5
+                    """
+            )
     st.divider()
         
     col1, col2 = st.columns(2)
@@ -82,8 +85,12 @@ def runDetect():
             dem = 0
             s = ''
             for x in ket_qua:
-                s = s + '%d ' % (np.argmax(x))
+                s = s + '%d   ' % (np.argmax(x))
                 dem = dem + 1
                 if (dem % 10 == 0) and (dem < 100):
                     s = s + '\n'    
-            col2.text(s)
+            html_str = """
+            <div style='font-size:24px; line-height:1.6;'>{}</div>
+            """.format(s.replace(' ', '&nbsp;').replace('\n', '<br>'))
+
+            col2.markdown(html_str, unsafe_allow_html=True)

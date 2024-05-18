@@ -155,16 +155,16 @@ def nhan_dang_trai_cay():
         st.markdown(
                 """
                 #### Mô tả
-                Module nhận dạng 80 loại đối tượng triển khai một hệ thống nhận dạng đối tượng dựa 
-                trên mô hình ONNX. Em đã tiến hành training lại model này với 80 loại đối tượng là 
-                person, bicycle, car, motorbike, aeroplane, bus, train, truck, boat, traffic light, 
-                stop sign, cat, dog, handbag, tie, suitcase,... sau đó xuất ra dưới dạng file onnx 
-                và sử dụng thư viện OpenCV và ONNX Runtime để thực hiện dự đoán trên ảnh đầu vào 
-                và xác định loại trái cây.
+                Module nhận dạng các loại đối tượng triển khai một hệ thống nhận dạng đối tượng dựa 
+                trên mô hình ONNX. Chúng em đã tiến hành training lại model này với 80 loại đối tượng 
+                sau đó xuất ra dưới dạng file onnx và sử dụng thư viện OpenCV và ONNX Runtime để 
+                thực hiện dự đoán trên ảnh đầu vào và xác định loại trái cây.
                 """
         )
     with col2:
-        st.markdown(
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
                 """
                 #### Model được sử dụng
                 🔻yolov8n.onnx

@@ -195,7 +195,9 @@ def runAgeGender():
                 """
         )
     with col2:
-        st.markdown(
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
             """
                 #### Model được sử dụng
                 🔻opencv_face_detector_uint8.pb
@@ -206,7 +208,8 @@ def runAgeGender():
                 
                 🔻gender_net.caffemodel
                 """
-        )
+            )
+        
     st.divider()
     
     if st.button("Nhận dạng bằng camera"):

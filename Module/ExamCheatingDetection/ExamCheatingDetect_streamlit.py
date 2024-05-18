@@ -123,12 +123,14 @@ def ExamCheatingDetect():
                 """
         )
     with col2:
-        st.markdown(
-            """
-                #### Model được sử dụng
-                🔻Tự train trên data custom
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
                 """
-        )
+                    #### Model được sử dụng
+                    🔻Tự train trên data custom
+                    """
+            )
     st.divider()
     # Upload file
     uploaded_file = st.file_uploader(

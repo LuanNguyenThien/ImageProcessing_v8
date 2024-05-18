@@ -16,14 +16,16 @@ def handwriting_streamlit_show():
                 """
         )
     with col2:
-        st.markdown(
-            """
-                #### Model được sử dụng
-                🔻detector.onnx (Tự training)
-
-                🔻reader.onnx (Tự training)
+        _col1, _col2 = st.columns(2)
+        with _col2:
+            st.markdown(
                 """
-        )
+                    #### Model được sử dụng
+                    🔻detector.onnx (Tự training)
+
+                    🔻reader.onnx (Tự training)
+                    """
+            )
     st.divider()
     
     result_path = ".\\Module\\HandWriting\\data\\result\\"
