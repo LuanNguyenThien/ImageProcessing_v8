@@ -7,6 +7,7 @@ from PIL import Image
 import numpy as np
 
 #module
+from Module.Hand_volumeAdjust import Nhan_Dang_Tay_Tang_Giam_Am_Luong
 from Module.giai_pt_bac_2 import ptb2
 from Module.face_recognize import mainFace
 from Module.Phat_Hien_Doi_Tuong_Yolo4_streamlit.phat_hien_doi_tuong_yolo4 import nhan_dang_doi_tuong
@@ -67,7 +68,8 @@ def display_home():
     )
     
     #hiệu ứng
-    #st.snow()
+    
+    st.snow()
         
     st.image('./img/HCMUTE-fit.png')
     st.divider()
@@ -250,6 +252,12 @@ def exam_cheating():
     st.divider()
     
     ExamCheatingDetect()
+
+def hand_volumeAdjust():
+    st.title("✌️NHẬN DIỆN TAY ĐIỀU CHỈNH ÂM LƯỢNG")
+    st.divider()
+    
+    Nhan_Dang_Tay_Tang_Giam_Am_Luong.volumeAdjust()
           
 #Main    
 def main():
@@ -287,9 +295,9 @@ def main():
     # Thanh menu
     menu = ["Trang chủ", "Nhận dạng khuôn mặt", "Nhận dạng đối tượng",
             "Nhận dạng chữ số viết tay", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
-            "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Nhận dạng nón bảo hiểm", "Phát hiện gian lận"]
+            "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Nhận dạng nón bảo hiểm", "Phát hiện gian lận", "Nhận diện tay điều chỉnh âm lượng"]
     # Biểu tượng tương ứng với mỗi mục trong menu
-    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨"]
+    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨", "✌️"]
 
     # Chọn chức năng từ thanh menu
     st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>👉 Chọn chức năng 👈</h2>", unsafe_allow_html=True)
@@ -315,6 +323,8 @@ def main():
         object_helmet()
     elif choice == "Phát hiện gian lận":
         exam_cheating()
+    elif choice == "Nhận diện tay điều chỉnh âm lượng":
+        hand_volumeAdjust()
 
 if __name__ == "__main__":
     main()
