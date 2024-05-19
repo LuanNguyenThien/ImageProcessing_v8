@@ -195,7 +195,7 @@ def runAgeGender():
                 """
         )
     with col2:
-        _col1, _col2 = st.columns(2)
+        _col1, _col2 = st.columns([1,2])
         with _col2:
             st.markdown(
             """

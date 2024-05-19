@@ -8,16 +8,13 @@ import numpy as np
 
 #module
 from Module.Hand_volumeAdjust import Nhan_Dang_Tay_Tang_Giam_Am_Luong
-from Module.giai_pt_bac_2 import ptb2
 from Module.face_recognize import mainFace
-from Module.Phat_Hien_Doi_Tuong_Yolo4_streamlit.phat_hien_doi_tuong_yolo4 import nhan_dang_doi_tuong
 from Module.nhan_dang_chu_so_mnist_streamlit.home import runDetect
 from Module.NhanDangTraiCay_Onnx_Streamlit import nhan_dang_trai_cay
 from Module.faceAgeGender_dectected import mainAgeGender
 from Module.HandWriting.handwriting_streamlit import handwriting_streamlit_show 
 from Module.BlackJackRecognize.detect_blackjack_custom import detect_blackjack_frame, detect_blackjack_video
 from Module.XuLyAnh.xulyanh import runXuLyAnh
-from Module.HelmetDetection.detect_custom import runDetectHelmet
 from Module.ExamCheatingDetection.ExamCheatingDetect_streamlit import ExamCheatingDetect
 
 from moviepy.editor import VideoFileClip
@@ -63,6 +60,12 @@ def display_home():
         [data-testid="stMarkdownContainer"] {
             text-align: center;
         }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
     """, unsafe_allow_html=True
     )
@@ -78,15 +81,15 @@ def display_home():
     st.write("**GVHD: ThS. Trần Tiến Đức**")
     st.divider()
     st.subheader("Sinh viên thực hiện")
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4, col5 = st.columns([1,3,1,3,1])
 
-    with col1:
-        st.image("./img/phuonganh.png")
+    with col2:
+        st.image("./img/luan.png")
         st.write("**Nguyễn Thiện Luân**")
         st.write("**MSSV: 21110538**")
 
-    with col2:
-        st.image("./img/phuonganh.png")
+    with col4:
+        st.image("./img/bao.png")
         st.write("**Lê Nguyễn Bảo**")
         st.write("**MSSV: 21110374**")
     
@@ -106,8 +109,8 @@ def display_home():
         st.write("👶 Nhận dạng tuổi - giới tính")
         st.write("✍️ Nhận dạng chữ viết tay")
         st.write("🃏 Nhận dạng lá bài tây")
-        st.write("⛑️ Nhận dạng nón bảo hiểm")
         st.write("🚨 Phát hiện gian lận")
+        st.write("✌️ Nhận diện tay điều chỉnh âm lượng")
     
 #Nhận dạng khuôn mặt
 def display_face_detection():    
@@ -125,7 +128,7 @@ def display_handwritten_digit_recognition():
     
 #Nhận dạng đối tượng
 def display_object_detection():    
-    st.title("NHẬN DẠNG 80 LOẠI ĐỐI TƯỢNG")
+    st.title("NHẬN DẠNG CÁC LOẠI ĐỐI TƯỢNG")
     st.subheader("Các loại đối tượng đã training model:")
     st.write("person 🚶, bicycle 🚲, car 🚗, motorbike 🏍️, aeroplane ✈️, bus 🚌, train 🚆, truck 🚚, boat ⛵, traffic light 🚦, stop sign 🛑, cat 🐱, dog 🐶, handbag 👜, tie 👔, suitcase 🧳, frisbee 🥏, skis 🎿, snowboard 🏂, sports ball ⚽, kite 🪁, baseball bat ⚾, baseball glove ⚾, skateboard 🛹, surfboard 🏄‍♂️, tennis racket 🎾, bottle 🍾, wine glass 🍷, cup ☕, fork 🍴, knife 🔪, spoon 🥄, bowl 🥣, banana 🍌, apple 🍎, sandwich 🥪, orange 🍊, broccoli 🥦, carrot 🥕, hot dog 🌭, pizza 🍕, donut 🍩, cake 🍰, chair 🪑, sofa 🛋️, bed 🛏️, diningtable 🪑, toilet 🚽, tvmonitor 📺, laptop 💻, mouse 🖱️, remote 📱, keyboard ⌨️, cell phone 📱, microwave 🍲, oven 🍲, toaster 🍞, sink 🚰, refrigerator 🧊, book 📚, clock 🕰️, vase 🏺, scissors ✂️, teddy bear 🧸, hair drier 💇 ...")   
     st.divider()
@@ -134,26 +137,26 @@ def display_object_detection():
 
 #Xử lý ảnh
 def display_image_processing():
-    st.title("XỬ LÝ ẢNH")
+    st.title("🖼️XỬ LÝ ẢNH")
     st.divider()
     
     runXuLyAnh()
 
 #Nhận dạng tuổi, giới tính
 def display_face_Age_Gender():    
-    st.title("NHẬN DẠNG TUỔI - GIỚI TÍNH")
+    st.title("👶NHẬN DẠNG TUỔI - GIỚI TÍNH")
     st.divider()
     mainAgeGender.runAgeGender()
      
 #Nhận dạng chữ viết tay
 def hand_writting():
-    st.title("NHẬN DẠNG CHỮ VIẾT TAY")
+    st.title("✍️NHẬN DẠNG CHỮ VIẾT TAY")
     st.divider()
     handwriting_streamlit_show()
         
 #Nhận dạng lá bài tây
 def cards():   
-    st.title("NHẬN DẠNG LÁ BÀI TÂY")
+    st.title("🃏NHẬN DẠNG LÁ BÀI TÂY")
     st.divider()
     
     col1, col2 = st.columns(2)
@@ -239,16 +242,9 @@ def cards():
         if os.path.exists(result_path):
             shutil.rmtree(result_path)  
 
-#Nhận diện nón bảo hiểm
-def object_helmet():
-    st.title("NHẬN DẠNG NÓN BẢO HIỂM")
-    st.divider()
-    
-    runDetectHelmet()
-
 #Phát hiện gian lận      
 def exam_cheating():
-    st.title("🚨Nhận dạng gian lận🚨")  
+    st.title("🚨Phát hiện gian lận")  
     st.divider()
     
     ExamCheatingDetect()
@@ -295,9 +291,9 @@ def main():
     # Thanh menu
     menu = ["Trang chủ", "Nhận dạng khuôn mặt", "Nhận dạng đối tượng",
             "Nhận dạng chữ số viết tay", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
-            "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Nhận dạng nón bảo hiểm", "Phát hiện gian lận", "Nhận diện tay điều chỉnh âm lượng"]
+            "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Phát hiện gian lận", "Nhận diện tay điều chỉnh âm lượng"]
     # Biểu tượng tương ứng với mỗi mục trong menu
-    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "⛑️", "🚨", "✌️"]
+    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "🚨", "✌️"]
 
     # Chọn chức năng từ thanh menu
     st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>👉 Chọn chức năng 👈</h2>", unsafe_allow_html=True)
@@ -319,8 +315,6 @@ def main():
         hand_writting()
     elif choice == "Nhận dạng lá bài tây":
         cards()
-    elif choice == "Nhận dạng nón bảo hiểm":
-        object_helmet()
     elif choice == "Phát hiện gian lận":
         exam_cheating()
     elif choice == "Nhận diện tay điều chỉnh âm lượng":
