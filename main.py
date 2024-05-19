@@ -77,8 +77,8 @@ def display_home():
     st.image('./img/HCMUTE-fit.png')
     st.divider()
     st.title("Đồ án cuối kỳ môn Xử lý ảnh số")
-    st.write("**Mã lớp: DIPR430685_23_1_02**")
-    st.write("**GVHD: ThS. Trần Tiến Đức**")
+    st.markdown("<p style='font-size:28px'><b>Mã lớp: DIPR430685_23_2_03</b></p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-size:28px'><b>GVHD: ThS. Trần Tiến Đức</b></p>", unsafe_allow_html=True)
     st.divider()
     st.subheader("Sinh viên thực hiện")
     col1, col2, col3, col4, col5 = st.columns([1,3,1,3,1])
@@ -86,12 +86,12 @@ def display_home():
     with col2:
         st.image("./img/luan.png")
         st.markdown("<p style='font-size:36px'><b>Nguyễn Thiện Luân</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>MSSV: 21110538</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>MSSV: 21110538</b></p>", unsafe_allow_html=True)
 
     with col4:
         st.image("./img/bao.png")
         st.markdown("<p style='font-size:36px'><b>Lê Nguyễn Bảo</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>MSSV: 21110374</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>MSSV: 21110374</b></p>", unsafe_allow_html=True)
          
     st.divider()    
     st.subheader("Nội dung project")
@@ -99,18 +99,18 @@ def display_home():
 
     with col1:
         st.markdown("<p style='font-size:36px'><b>Các chức năng chính</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>😃 Nhận dạng khuôn mặt</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>🔢 Nhận dạng chữ số viết tay</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>✈️ Nhận dạng đối tượng</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>🖼️ Xử lý ảnh</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>😃 Nhận dạng khuôn mặt</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>🔢 Nhận dạng chữ số viết tay</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>✈️ Nhận dạng đối tượng</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>🖼️ Xử lý ảnh</b></p>", unsafe_allow_html=True)
 
     with col2:
         st.markdown("<p style='font-size:36px'><b>Các chức năng thêm</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>👶 Nhận dạng tuổi - giới tính</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>✍️ Nhận dạng chữ viết tay</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>✌️ Nhận diện tay điều chỉnh âm lượng</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>🃏 Nhận dạng lá bài tây</b></p>", unsafe_allow_html=True)
-        st.markdown("<p style='font-size:20px'><b>🚨 Phát hiện gian lận</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>👶 Nhận dạng tuổi - giới tính</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>✍️ Nhận dạng chữ viết tay</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>✌️ Nhận diện tay điều chỉnh âm lượng</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>🃏 Nhận dạng lá bài tây</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:24px'><b>🚨 Phát hiện gian lận</b></p>", unsafe_allow_html=True)
         
     
 #Nhận dạng khuôn mặt
