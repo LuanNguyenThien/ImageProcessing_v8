@@ -617,9 +617,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c4.Spectrum(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c4.Spectrum(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c4.Spectrum(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -648,9 +652,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c4.FrequencyFilter(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c4.FrequencyFilter(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c4.FrequencyFilter(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -695,9 +703,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c4.RemoveMoire(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c4.RemoveMoire(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c4.RemoveMoire(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -728,9 +740,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c5.CreateMotionNoise(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c5.CreateMotionNoise(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c5.CreateMotionNoise(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -759,9 +775,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c5.DenoiseMotion(frame_gray),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c5.DenoiseMotion(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c5.DenoiseMotion(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -790,10 +810,15 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    temp = cv2.medianBlur(frame_gray, 7)
-                    output_col.image(c5.DenoiseMotion(temp),
-                               use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        temp = cv2.medianBlur(frame_gray, 7)
+                        output_col.image(c5.DenoiseMotion(temp), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        temp = cv2.medianBlur(frame, 7)
+                        output_col.image(c5.DenoiseMotion(temp), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -824,9 +849,13 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c9.ConnectedComponent(
-                        frame_gray), use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c9.ConnectedComponent(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c9.ConnectedComponent(frame), use_column_width=True, caption='Output')
+
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
@@ -854,9 +883,12 @@ def runXuLyAnh():
                 if execute:
                     image = Image.open(uploaded_file)
                     frame = np.array(image)
-                    frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-                    output_col.image(c9.CountRice(
-                        frame_gray), use_column_width=True, caption='Output')
+
+                    try:
+                        frame_gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+                        output_col.image(c9.CountRice(frame_gray), use_column_width=True, caption='Output')
+                    except cv2.error:
+                        output_col.image(c9.CountRice(frame), use_column_width=True, caption='Output')
                 if remove:
                     clear_uploaded_files(session_state)
                     st.experimental_rerun()
