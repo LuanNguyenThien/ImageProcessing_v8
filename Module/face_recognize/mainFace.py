@@ -319,14 +319,14 @@ def mainface():
             """
         )
     with col2:
-        _col1, _col2 = st.columns(2)
+        _col1, _col2 = st.columns([1,2])
         with _col2:
             st.markdown(
             """
             #### Model được sử dụng
-            face_detection_yunet_2023mar.onnx
+            🔻face_detection_yunet_2023mar.onnx
             
-            face_recognition_sface_2021dec.onnx
+            🔻face_recognition_sface_2021dec.onnx
             """
         )
         
