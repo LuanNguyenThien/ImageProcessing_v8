@@ -85,32 +85,33 @@ def display_home():
 
     with col2:
         st.image("./img/luan.png")
-        st.write("**Nguyễn Thiện Luân**")
-        st.write("**MSSV: 21110538**")
+        st.markdown("<p style='font-size:36px'><b>Nguyễn Thiện Luân</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>MSSV: 21110538</b></p>", unsafe_allow_html=True)
 
     with col4:
         st.image("./img/bao.png")
-        st.write("**Lê Nguyễn Bảo**")
-        st.write("**MSSV: 21110374**")
-    
-        
+        st.markdown("<p style='font-size:36px'><b>Lê Nguyễn Bảo</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>MSSV: 21110374</b></p>", unsafe_allow_html=True)
+         
     st.divider()    
     st.subheader("Nội dung project")
     col1, col2=st.columns(2)
+
     with col1:
-        st.subheader("4 chức năng chính")
-        st.write("😃 Nhận dạng khuôn mặt")
-        st.write("🔢 Nhận dạng chữ số viết tay")
-        st.write("✈️ Nhận dạng đối tượng")
-        st.write("🖼️ Xử lý ảnh")
+        st.markdown("<p style='font-size:36px'><b>Các chức năng chính</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>😃 Nhận dạng khuôn mặt</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>🔢 Nhận dạng chữ số viết tay</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>✈️ Nhận dạng đối tượng</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>🖼️ Xử lý ảnh</b></p>", unsafe_allow_html=True)
 
     with col2:
-        st.subheader("Chức năng thêm")
-        st.write("👶 Nhận dạng tuổi - giới tính")
-        st.write("✍️ Nhận dạng chữ viết tay")
-        st.write("🃏 Nhận dạng lá bài tây")
-        st.write("🚨 Phát hiện gian lận")
-        st.write("✌️ Nhận diện tay điều chỉnh âm lượng")
+        st.markdown("<p style='font-size:36px'><b>Các chức năng thêm</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>👶 Nhận dạng tuổi - giới tính</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>✍️ Nhận dạng chữ viết tay</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>✌️ Nhận diện tay điều chỉnh âm lượng</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>🃏 Nhận dạng lá bài tây</b></p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-size:20px'><b>🚨 Phát hiện gian lận</b></p>", unsafe_allow_html=True)
+        
     
 #Nhận dạng khuôn mặt
 def display_face_detection():    
@@ -260,29 +261,32 @@ def main():
     #chèn background
     page_bg_img = """   
     <style>
-    # .stApp {
-    # background: url("https://cellphones.com.vn/sforum/wp-content/uploads/2023/02/hinh-nen-may-tinh-4k-76.jpg")
-    #     no-repeat center center fixed !important;
-    # background-size: cover !important;
-    # }
-    # .stApp::before {
-    # content: "";
-    # position: absolute;
-    # top: 0;
-    # left: 0;
-    # width: 100%;
-    # height: 100%;
-    # background-color: rgba(255, 255, 255, 0.5);
-    # }
-    # [data-testid="stHeader"]{
-    #     background: rgba(0,0,0,0);
-    # }
-    # [data-testid="stToolbar"]{
-    #     right:2rem;
-    # }
+    .stApp {
+    background: url("https://cdn.pixabay.com/photo/2014/05/22/16/52/pyrenees-351266_1280.jpg")
+        no-repeat center center fixed !important;
+    background-size: cover !important;
+    }
+    .stApp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    }
+    [data-testid="stHeader"]{
+        background: rgba(0,0,0,0);
+    }
+    [data-testid="stToolbar"]{
+        right:2rem;
+    }
     [data-testid="stSidebar"] > div:first-child {
-        background-image: url("https://images.pexels.com/photos/2437299/pexels-photo-2437299.jpeg?auto=compress&cs=tinysrgb&w=800");
-        background-position: center;      
+        background-image: url("https://cdn.pixabay.com/photo/2014/05/22/16/52/pyrenees-351266_1280.jpg");
+        background-position: left; 
+        background-color: rgba(255, 255, 255, 0.5);
+        no-repeat left left fixed !important;
+        background-size: cover !important;     
     }
     </style>
     """
@@ -291,12 +295,12 @@ def main():
     # Thanh menu
     menu = ["Trang chủ", "Nhận dạng khuôn mặt", "Nhận dạng đối tượng",
             "Nhận dạng chữ số viết tay", "Xử lý ảnh", "Nhận dạng tuổi - giới tính", 
-            "Nhận dạng chữ viết tay", "Nhận dạng lá bài tây", "Phát hiện gian lận", "Nhận diện tay điều chỉnh âm lượng"]
+            "Nhận dạng chữ viết tay", "Nhận diện tay điều chỉnh âm lượng", "Nhận dạng lá bài tây", "Phát hiện gian lận"]
     # Biểu tượng tương ứng với mỗi mục trong menu
-    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "🃏", "🚨", "✌️"]
+    menu_icons = ["🏠", "😃", "✈️", "🔢", "🖼️", "👶", "✍️", "✌️", "🃏", "🚨"]
 
     # Chọn chức năng từ thanh menu
-    st.sidebar.markdown("<h2 style='font-size:24px; color: black;'>👉 Chọn chức năng 👈</h2>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h2 style='font-size:24px; color: white;'>👉 Chọn chức năng 👈</h2>", unsafe_allow_html=True)
     choice = st.sidebar.selectbox("", menu, format_func=lambda x: menu_icons[menu.index(x)] + " " + x)
 
     if choice == "Trang chủ":

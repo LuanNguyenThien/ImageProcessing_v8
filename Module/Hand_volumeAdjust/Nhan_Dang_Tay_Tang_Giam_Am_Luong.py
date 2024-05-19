@@ -35,67 +35,79 @@ def volumeAdjust():
     # if app_mode == 'Finger Recognition':
     #     st.title("Finger Recognition")
 
-        start_btn = st.button('START')
-        exit_btn = st.button('EXIT')
+        #Mô tả
+    col1, col2, col3 = st.columns([1, 3, 1])
+    with col2:
+        st.markdown(
+            """
+                #### Mô tả
+                Modul này được xây dựng để điều chỉnh âm lượng dựa trên khoảng cách giữa các ngón tay được nhận dạng. Sử dụng OpenCV để phát hiện tay và tính toán khoảng cách giữa ngón cái và ngón trỏ qua webcam.
+                """
+        )
+    
+    st.divider()
 
-        if start_btn:
-            cap = cv2.VideoCapture(0)
+    start_btn = st.button('START')
+    exit_btn = st.button('EXIT')
 
-            FRAME_WINDOW = st.image([])
+    if start_btn:
+        cap = cv2.VideoCapture(0)
 
-            FolderPath = "Module/Hand_volumeAdjust/B10_RecognitionFinger/Fingers"
-            lst = os.listdir(FolderPath)
+        FRAME_WINDOW = st.image([])
 
-            lst_2 = []  # khai báo list chứa các mảng giá trị của các hình ảnh/
-            for i in lst:
-                image = cv2.imread(f"{FolderPath}/{i}")  # Fingers/1.jpg , Fingers/2.jpg ...
-                lst_2.append(image)
+        FolderPath = "Module/Hand_volumeAdjust/B10_RecognitionFinger/Fingers"
+        lst = os.listdir(FolderPath)
 
-            pTime = 0
-            detector = htm.handDetector(detectionCon=1)
-            fingerid = [4, 8, 12, 16, 20]
+        lst_2 = []  # khai báo list chứa các mảng giá trị của các hình ảnh/
+        for i in lst:
+            image = cv2.imread(f"{FolderPath}/{i}")  # Fingers/1.jpg , Fingers/2.jpg ...
+            lst_2.append(image)
 
-            while True:
-                ret, frame = cap.read()
-                frame = detector.findHands(frame)
-                lmList = detector.findPosition(frame, draw=False)  # phát hiện vị trí
+        pTime = 0
+        detector = htm.handDetector(detectionCon=1)
+        fingerid = [4, 8, 12, 16, 20]
 
-                if len(lmList) != 0:
-                    fingers = []
+        while True:
+            ret, frame = cap.read()
+            frame = detector.findHands(frame)
+            lmList = detector.findPosition(frame, draw=False)  # phát hiện vị trí
 
-                    # Thumb
-                    if lmList[fingerid[0]][1] < lmList[fingerid[0] - 1][1]:
-                        fingers.append(1)
-                    else:
-                        fingers.append(0)
+            if len(lmList) != 0:
+                fingers = []
 
-                    # Index finger
-                    if lmList[fingerid[1]][1] < lmList[fingerid[1] - 2][1]:
-                        fingers.append(1)
-                    else:
-                        fingers.append(0)
+                # Thumb
+                if lmList[fingerid[0]][1] < lmList[fingerid[0] - 1][1]:
+                    fingers.append(1)
+                else:
+                    fingers.append(0)
 
-                    print(fingers)
+                # Index finger
+                if lmList[fingerid[1]][1] < lmList[fingerid[1] - 2][1]:
+                    fingers.append(1)
+                else:
+                    fingers.append(0)
 
-                    # Tính khoảng cách giữa ngón cái và ngón trỏ
-                    thumb_tip = (lmList[fingerid[0]][1], lmList[fingerid[0]][2])
-                    index_tip = (lmList[fingerid[1]][1], lmList[fingerid[1]][2])
+                print(fingers)
 
-                    finger_distance = math.sqrt((thumb_tip[0] - index_tip[0])**2 + (thumb_tip[1] - index_tip[1])**2)
-                    print(f"Finger distance: {finger_distance}")
+                # Tính khoảng cách giữa ngón cái và ngón trỏ
+                thumb_tip = (lmList[fingerid[0]][1], lmList[fingerid[0]][2])
+                index_tip = (lmList[fingerid[1]][1], lmList[fingerid[1]][2])
 
-                    # Chỉnh âm lượng dựa trên khoảng cách giữa ngón cái và ngón trỏ
-                    adjust_volume(finger_distance)
+                finger_distance = math.sqrt((thumb_tip[0] - index_tip[0])**2 + (thumb_tip[1] - index_tip[1])**2)
+                print(f"Finger distance: {finger_distance}")
 
-                    h, w, c = lst_2[fingers.count(1) - 1].shape
-                    frame[0:h, 0:w] = lst_2[fingers.count(1) - 1]
-                cTime = time.time()
-                fps = 1 / (cTime - pTime)
-                pTime = cTime
+                # Chỉnh âm lượng dựa trên khoảng cách giữa ngón cái và ngón trỏ
+                adjust_volume(finger_distance)
 
-                cv2.putText(frame, f"FPS: {int(fps)}", (150, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+                h, w, c = lst_2[fingers.count(1) - 1].shape
+                frame[0:h, 0:w] = lst_2[fingers.count(1) - 1]
+            cTime = time.time()
+            fps = 1 / (cTime - pTime)
+            pTime = cTime
 
-                print(frame)
-                FRAME_WINDOW.image(frame)
-                if exit_btn:
-                    break
+            cv2.putText(frame, f"FPS: {int(fps)}", (150, 70), cv2.FONT_HERSHEY_PLAIN, 3, (255, 0, 0), 3)
+
+            print(frame)
+            FRAME_WINDOW.image(frame)
+            if exit_btn:
+                break
